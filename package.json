@@ -1,16 +1,22 @@
 {
   "name": "open-dis",
-  "version": "1.3.6",
-  "description": "Javascript Node module for IEEE 1278.1, Distributed Interactive Simulation",
-  "main": "./dist/dis6.min.js",
+  "version": "2.0.0",
+  "description": "JS/TS library for IEEE 1278.1, Distributed Interactive Simulation",
   "scripts": {
+    "build": "node ./clean-dist.mjs && tsc -p tsconfig.json",
     "lint": "eslint \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "rm -rf dist && mkdir dist && uglifyjs src/dis/*.js src/disSupporting/*.js -o dist/dis6.min.js && uglifyjs src/dis7/*.js src/disSupporting/*.js -o dist/dis7.min.js"
+    "upgrade": "npx npm-check-updates -u && npm install"
   },
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/open-dis/open-dis-javascript.git"
+    "url": "https://github.com/y3nd/open-dis-js.git"
+  },
+  "engines": {
+    "node": ">=22"
   },
   "keywords": [
     "IEEE",
@@ -22,25 +28,25 @@
     "open-dis"
   ],
   "author": {
-    "name": "Don McGregor",
-    "email": "mcgredo@nps.edu",
-    "url": "http://www.movesinstitute.org/"
+    "name": "Yoann N.",
+    "email": "y3ndev@gmail.com",
+    "url": "https://y3n.co/"
   },
+  "contributors": [
+    {
+      "name": "Don McGregor",
+      "email": "mcgredo@nps.edu",
+      "url": "http://www.movesinstitute.org/"
+    }
+  ],
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/open-dis/open-dis-javascript/issues"
+    "url": "https://github.com/y3nd/open-dis-js/issues"
   },
-  "homepage": "https://github.com/open-dis/open-dis-javascript",
-  "dependencies": {
-    "long": "^3.2.0",
-    "uglifyjs": "^2.4.11"
-  },
+  "homepage": "https://github.com/y3nd/open-dis-js",
+  "dependencies": {},
   "devDependencies": {
-    "eslint": "^6.7.1",
-    "uglify-js": "^3.7.0"
-  },
-  "files": [
-    "dist",
-    "src"
-  ]
+    "eslint": "^9.17.0",
+    "typescript": "^5.7.2"
+  }
 }

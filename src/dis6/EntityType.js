@@ -7,24 +7,32 @@
  * @typedef {import("../common/OutputStream.js").default} OutputStream
  */
 
+/**
+ * @typedef {number} EntityKind
+ * @typedef {number} Domain
+ * @typedef {number} MunitionDomain
+ * @typedef {number} LandCategory
+ * @typedef {number} Country
+ **/
+
 class EntityType {
   /**
    * Kind of entity.
-   * @type {number}
+   * @type {EntityKind}
    */
-  entityKind = 0;
+  entityKind = EntityType.Domain.OTHER;
 
   /**
-   * Domain of entity (air, surface, subsurface, space, etc).
-   * @type {number}
+   * Domain of entity (air, surface, subsurface, space, etc.).
+   * @type {Domain|MunitionDomain}
    */
-  domain = 0;
+  domain = EntityType.Domain.OTHER
 
   /**
    * Country to which the design of the entity is attributed.
-   * @type {number}
+   * @type {Country}
    */
-  country = 0;
+  country = 71; // France
 
   /**
    * Category of entity.
@@ -77,6 +85,54 @@ class EntityType {
     outputStream.writeUByte(this.spec);
     outputStream.writeUByte(this.extra);
   }
+
+  /**
+   * @readonly
+   * @enum {EntityKind}
+   */
+  static EntityKind = {
+    OTHER: 0,
+    PLATFORM: 1,
+    MUNITION: 2,
+    LIFE_FORM: 3,
+    ENVIRONMENTAL: 4,
+    CULTURAL_FEATURE: 5,
+    SUPPLY: 6,
+  };
+
+  /**
+   * @readonly
+   * @enum {MunitionDomain}
+   */
+  static MunitionDomain = {
+    OTHER: 0,
+    ANTI_AIR: 1,
+    ANTI_ARMOR: 2,
+    ANTI_GUIDED_WEAPON: 3,
+    ANTI_RADAR: 4,
+    ANTI_SATELLITE: 5,
+    ANTI_SHIP: 6,
+    ANTI_SUBMARINE: 7,
+    ANTI_PERSONNEL: 8,
+    BATTLEFIELD_SUPPORT: 9,
+    STRATEGIC: 10,
+    TACTICAL: 11,
+    DIRECTED_ENERGY_WEAPON: 12,
+  };
+
+  /**
+   * @readonly
+   * @enum {Domain}
+   */
+  static Domain = {
+    OTHER: 0,
+    LAND: 1,
+    AIR: 2,
+    SURFACE: 3,
+    SUBSURFACE: 4,
+    SPACE: 5,
+    NON_COMBATANT: 6,
+  };
 }
 
 export default EntityType;

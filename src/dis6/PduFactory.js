@@ -1,11 +1,11 @@
 import PduFactory from "../common/PduFactory.js";
-import DIS6_PDU_MAP from "./DIS6_PduMap.js";
+import PDU_MAP from "./PduMap.js";
 
 class DIS6_PduFactory extends PduFactory {
   constructor() {
     super();
 
-    this.pduMap = DIS6_PDU_MAP;
+    this.pduMap = PDU_MAP;
   }
 }
 

@@ -17,13 +17,60 @@ import ArticulationParameter from "../ArticulationParameter.js";
 
 /**
  * @typedef {import("../../common/InputStream.js").default} InputStream
+ * @typedef {import("../../common/OutputStream.js").default} OutputStream
+ */
+
+/**
+ * @typedef {number} ForceID
  */
 
 class EntityStatePdu {
+  /**
+   * @readonly
+   */
+  static pduType = 1;
+
+  /**
+   * @readonly
+   * @enum {ForceID}
+   */
+  static FORCE_ID = {
+    OTHER: 0,
+    FRIENDLY: 1,
+    OPPOSING: 2,
+    NEUTRAL: 3,
+    FRIENDLY_2: 4,
+    OPPOSING_2: 5,
+    NEUTRAL_2: 6,
+    FRIENDLY_3: 7,
+    OPPOSING_3: 8,
+    NEUTRAL_3: 9,
+    FRIENDLY_4: 10,
+    OPPOSING_4: 11,
+    NEUTRAL_4: 12,
+    FRIENDLY_5: 13,
+    OPPOSING_5: 14,
+    NEUTRAL_5: 15,
+    FRIENDLY_6: 16,
+    OPPOSING_6: 17,
+    NEUTRAL_6: 18,
+    FRIENDLY_7: 19,
+    OPPOSING_7: 20,
+    NEUTRAL_7: 21,
+    FRIENDLY_8: 22,
+    OPPOSING_8: 23,
+    NEUTRAL_8: 24,
+    FRIENDLY_9: 25,
+    OPPOSING_9: 26,
+    NEUTRAL_9: 27,
+    FRIENDLY_10: 28,
+    OPPOSING_10: 29,
+    NEUTRAL_10: 30,
+  };
+
   constructor() {
     this.protocolVersion = 6;
     this.exerciseID = 0;
-    this.pduType = 1;
     this.protocolFamily = 1;
     this.timestamp = 0;
     this.pduLength = 0;
@@ -64,7 +111,7 @@ class EntityStatePdu {
     this.entityLinearVelocity.initFromBinary(inputStream);
     this.entityLocation.initFromBinary(inputStream);
     this.entityOrientation.initFromBinary(inputStream);
-    this.entityAppearance = inputStream.readInt();
+    this.entityAppearance = inputStream.readUInt();
     this.deadReckoningParameters.initFromBinary(inputStream);
     this.marking.initFromBinary(inputStream);
     this.capabilities = inputStream.readInt();
@@ -76,10 +123,14 @@ class EntityStatePdu {
     }
   }
 
+  /**
+   * 
+   * @param {OutputStream} outputStream 
+   */
   encodeToBinary(outputStream) {
     outputStream.writeUByte(this.protocolVersion);
     outputStream.writeUByte(this.exerciseID);
-    outputStream.writeUByte(this.pduType);
+    outputStream.writeUByte(EntityStatePdu.pduType);
     outputStream.writeUByte(this.protocolFamily);
     outputStream.writeUInt(this.timestamp);
     outputStream.writeUShort(this.pduLength);
@@ -92,7 +143,7 @@ class EntityStatePdu {
     this.entityLinearVelocity.encodeToBinary(outputStream);
     this.entityLocation.encodeToBinary(outputStream);
     this.entityOrientation.encodeToBinary(outputStream);
-    outputStream.writeInt(this.entityAppearance);
+    outputStream.writeUInt(this.entityAppearance);
     this.deadReckoningParameters.encodeToBinary(outputStream);
     this.marking.encodeToBinary(outputStream);
     outputStream.writeInt(this.capabilities);
@@ -107,110 +158,6 @@ class EntityStatePdu {
 
   _setBits(mask, shift, val) {
     this.entityAppearance = (this.entityAppearance & ~mask) | (val << shift);
-  }
-
-  getPaintScheme() {
-    return this._extractBits(0x1, 0);
-  }
-
-  setPaintScheme(val) {
-    this._setBits(0x1, 0, val);
-  }
-
-  getMobility() {
-    return this._extractBits(0x2, 1);
-  }
-
-  setMobility(val) {
-    this._setBits(0x2, 1, val);
-  }
-
-  getFirepower() {
-    return this._extractBits(0x4, 2);
-  }
-
-  setFirepower(val) {
-    this._setBits(0x4, 2, val);
-  }
-
-  getDamage() {
-    return this._extractBits(0x18, 3);
-  }
-
-  setDamage(val) {
-    this._setBits(0x18, 3, val);
-  }
-
-  getSmoke() {
-    return this._extractBits(0x60, 5);
-  }
-
-  setSmoke(val) {
-    this._setBits(0x60, 5, val);
-  }
-
-  getTrailingEffects() {
-    return this._extractBits(0x180, 7);
-  }
-
-  setTrailingEffects(val) {
-    this._setBits(0x180, 7, val);
-  }
-
-  getHatch() {
-    return this._extractBits(0xe00, 9);
-  }
-
-  setHatch(val) {
-    this._setBits(0xe00, 9, val);
-  }
-
-  getHeadlights() {
-    return this._extractBits(0x1000, 12);
-  }
-
-  setHeadlights(val) {
-    this._setBits(0x1000, 12, val);
-  }
-
-  getTailLights() {
-    return this._extractBits(0x2000, 13);
-  }
-
-  setTailLights(val) {
-    this._setBits(0x2000, 13, val);
-  }
-
-  getBrakeLights() {
-    return this._extractBits(0x4000, 14);
-  }
-
-  setBrakeLights(val) {
-    this._setBits(0x4000, 14, val);
-  }
-
-  getFlaming() {
-    return this._extractBits(0x8000, 15);
-  }
-
-  setFlaming(val) {
-    this._setBits(0x8000, 15, val);
-  }
-
-  getLauncher() {
-    return this._extractBits(0x10000, 16);
-  }
-
-  setLauncher(val) {
-    this._setBits(0x10000, 16, val);
-  }
-
-  getCamouflageType() {
-    return this._extractBits(0x60000, 17);
-  }
-
-  setCamouflageType(val) {
-    this._setBits(0x60000, 17, val);
   }
 }
 

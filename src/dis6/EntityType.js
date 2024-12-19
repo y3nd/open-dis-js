@@ -11,7 +11,6 @@
  * @typedef {number} EntityKind
  * @typedef {number} Domain
  * @typedef {number} MunitionDomain
- * @typedef {number} LandCategory
  * @typedef {number} Country
  **/
 
@@ -20,7 +19,7 @@ class EntityType {
    * Kind of entity.
    * @type {EntityKind}
    */
-  entityKind = EntityType.Domain.OTHER;
+  entityKind = EntityType.EntityKind.OTHER;
 
   /**
    * Domain of entity (air, surface, subsurface, space, etc.).
@@ -84,6 +83,14 @@ class EntityType {
     outputStream.writeUByte(this.subcategory);
     outputStream.writeUByte(this.spec);
     outputStream.writeUByte(this.extra);
+  }
+
+  /**
+   * Convert to string with DIS notation (e.g. "1.1.2.4")
+   * @returns {string}
+   */
+  toString() {
+    return `${this.entityKind}.${this.domain}.${this.country}.${this.category}.${this.subcategory}.${this.spec}.${this.extra}`;
   }
 
   /**

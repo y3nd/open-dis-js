@@ -12,23 +12,6 @@
 
 class SubsurfacePlatformAppearance {
   /**
-   * Bit masks for each property.
-   */
-  static BIT_MASKS = {
-    paintScheme: 0b1 << 0, // Paint Scheme (Bit 0)
-    mobilityKilled: 0b1 << 1, // Mobility Killed (Bit 1)
-    damage: 0b11 << 3, // Damage (Bits 3-4)
-    isSmokeEmanating: 0b1 << 5, // Is Smoke Emanating (Bit 5)
-    isEngineEmittingSmoke: 0b1 << 6, // Is Engine Emitting Smoke (Bit 6)
-    hatch: 0b111 << 9, // Hatch (Bits 9-11)
-    runningLightsOn: 0b1 << 12, // Running Lights On (Bit 12)
-    isFlaming: 0b1 << 15, // Is Flaming (Bit 15)
-    isFrozen: 0b1 << 21, // Is Frozen (Bit 21)
-    powerPlantOn: 0b1 << 22, // Power Plant On (Bit 22)
-    state: 0b1 << 23, // State (Bit 23)
-  };
-
-  /**
    * @readonly
    * @enum {PaintScheme}
    */
@@ -101,7 +84,7 @@ class SubsurfacePlatformAppearance {
   state = SubsurfacePlatformAppearance.STATE.ACTIVE;
 
   /**
-   * Write the appearance to an int32 using BIT_MASKS
+   * Write the appearance to an int32
    */
   toUInt32() {
     let result = 0;

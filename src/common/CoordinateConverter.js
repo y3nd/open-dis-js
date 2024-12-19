@@ -44,7 +44,7 @@ class CoordinateConverter {
       (this.a * this.a) /
       Math.sqrt(
         this.a * this.a * Math.cos(phi) ** 2 +
-          this.b * this.b * Math.sin(phi) ** 2
+        this.b * this.b * Math.sin(phi) ** 2
       );
     answer[2] = W / Math.cos(phi) - rSubN;
 

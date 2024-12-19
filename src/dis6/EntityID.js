@@ -54,6 +54,24 @@ class EntityID {
     outputStream.writeUShort(this.application);
     outputStream.writeUShort(this.entity);
   }
+
+  /**
+   * 
+   * @param {EntityID} entityID_A 
+   * @param {EntityID} entityID_B 
+   * @returns 
+   */
+  static checkMatchingEntityID(entityID_A, entityID_B) {
+    if (entityID_A.siteID === entityID_B.siteID &&
+      entityID_A.applicationID === entityID_B.applicationID &&
+      entityID_A.entityID === entityID_B.entityID) {
+      return true;
+    }
+  }
+
+  toString() {
+    return `${this.site}.${this.application}.${this.entity}`;
+  }
 }
 
 export default EntityID;

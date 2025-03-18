@@ -7,10 +7,11 @@
  */
 
 class Orientation {
+  psi = 0;
+  theta = 0;
+  phi = 0;
+
   constructor() {
-    this.psi = 0;
-    this.theta = 0;
-    this.phi = 0;
   }
 
   /**

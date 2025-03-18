@@ -1,6 +1,15 @@
 export { DIS6_PduFactory } from './dis6/PduFactory.js';
 export { DIS6_PDU_MAP } from './dis6/PduMap.js';
 
+// COMMON
+// Converters
+export { CoordinateConverter } from './common/CoordinateConverter.js';
+export { OrientationConverter } from './common/OrientationConverter.js';
+export { InputStream } from './common/InputStream.js';
+export { OutputStream } from './common/OutputStream.js';
+
+// DIS6
+
 // PDUs
 export { EntityStatePdu as DIS6_EntityStatePdu } from './dis6/Pdu/EntityStatePdu.js';
 
@@ -18,6 +27,3 @@ export { GenericAppearance as DIS6_GenericAppearance } from './dis6/Appearance/G
 
 export { ArticulationParameter as DIS6_ArticulationParameter } from './dis6/ArticulationParameter.js';
 
-// Converters
-export { CoordinateConverter } from './common/CoordinateConverter.js';
-export { OrientationConverter } from './common/OrientationConverter.js';

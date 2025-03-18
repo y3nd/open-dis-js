@@ -97,6 +97,15 @@ class HumanLifeFormAppearance {
   };
 
   /**
+   * @readonly
+   * @enum {State}
+   */
+  static STATE = {
+    ACTIVE: 0,
+    DEACTIVATED: 1,
+  };
+
+  /**
    * 0 Desert Camouflage
 1 Winter Camouflage
 2 Forest Camouflage

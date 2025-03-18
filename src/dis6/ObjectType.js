@@ -20,7 +20,7 @@ if (typeof exports === "undefined")
 dis.ObjectType = function()
 {
    /** Kind of entity */
-   this.entityKind = 0;
+   this.kind = 0;
 
    /** Domain of entity (air, surface, subsurface, space, etc) */
    this.domain = 0;
@@ -36,7 +36,7 @@ dis.ObjectType = function()
 
   dis.ObjectType.prototype.initFromBinary = function(inputStream)
   {
-       this.entityKind = inputStream.readUByte();
+       this.kind = inputStream.readUByte();
        this.domain = inputStream.readUByte();
        this.country = inputStream.readUShort();
        this.category = inputStream.readUByte();
@@ -45,7 +45,7 @@ dis.ObjectType = function()
 
   dis.ObjectType.prototype.encodeToBinary = function(outputStream)
   {
-       outputStream.writeUByte(this.entityKind);
+       outputStream.writeUByte(this.kind);
        outputStream.writeUByte(this.domain);
        outputStream.writeUShort(this.country);
        outputStream.writeUByte(this.category);

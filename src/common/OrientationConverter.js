@@ -128,21 +128,21 @@ class OrientationConverter {
     // Heading = atan2(X3·East, X3·North)
     const heading = Math.atan2(this.dot(X3, NED.east), this.dot(X3, NED.north)) * this.RAD2DEG;
 
-    // Pitch = atan2(-X3·Down, sqrt((X3·North)^2+(X3·East)^2))
-    // const x3DotDown = this.dot(X3, NED.down);
-    // const x3DotNorth = this.dot(X3, NED.north);
-    // const x3DotEast = this.dot(X3, NED.east);
-    // const pitch = Math.atan2(-x3DotDown, Math.sqrt(x3DotNorth * x3DotNorth + x3DotEast * x3DotEast)) * this.RAD2DEG;
+    // Pitch = Math.atan2(-X3·Down, sqrt((X3·North)^2+(X3·East)^2))
+    const x3DotDown = this.dot(X3, NED.down);
+    const x3DotNorth = this.dot(X3, NED.north);
+    const x3DotEast = this.dot(X3, NED.east);
+    const pitch = Math.atan2(-x3DotDown, Math.sqrt(x3DotNorth * x3DotNorth + x3DotEast * x3DotEast)) * this.RAD2DEG;
 
-    // // After applying heading/pitch, re-apply them to get a frame to measure roll against
-    // const postHP = this.applyHeadingPitchRollToNED(heading, pitch, 0, NED);
-    // const Y2 = postHP.Y;
-    // const Z2 = postHP.Z;
+    // After applying heading/pitch, re-apply them to get a frame to measure roll against
+    const postHP = this.applyHeadingPitchRollToNED(heading, pitch, 0, NED);
+    const Y2 = postHP.Y;
+    const Z2 = postHP.Z;
 
-    // // Roll = atan2(Y3·Z2, Y3·Y2)
-    // const roll = Math.atan2(this.dot(Y3, Z2), this.dot(Y3, Y2)) * this.RAD2DEG;
+    // Roll = atan2(Y3·Z2, Y3·Y2)
+    const roll = Math.atan2(this.dot(Y3, Z2), this.dot(Y3, Y2)) * this.RAD2DEG;
 
-    return { heading: heading/*, pitch: pitch, roll: roll*/ };
+    return { heading: heading, pitch: pitch, roll: roll };
   }
 }
 

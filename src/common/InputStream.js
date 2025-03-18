@@ -127,6 +127,18 @@ class InputStream {
     this.currentPosition += 8;
     return { high, low }; // Returns the high and low components for future processing
   }
+
+  /**
+   * Read bytes to a Uint8Array.
+    * @param {number} length - The number of bytes to read.
+    * @returns {Uint8Array} The bytes read.
+    */
+  readBytes(length) {
+    const data = new Uint8Array(this.dataView.buffer, this.currentPosition, length);
+    this.currentPosition += length;
+    return data;
+  }
+
 }
 
 export default InputStream;

@@ -61,16 +61,18 @@ class EntityID {
    * @param {EntityID} entityID_B 
    * @returns 
    */
-  static checkMatchingEntityID(entityID_A, entityID_B) {
-    if (entityID_A.siteID === entityID_B.siteID &&
-      entityID_A.applicationID === entityID_B.applicationID &&
-      entityID_A.entityID === entityID_B.entityID) {
+  static equals(entityID_A, entityID_B) {
+    if (entityID_A.site === entityID_B.site &&
+      entityID_A.application === entityID_B.application &&
+      entityID_A.entity === entityID_B.entity) {
       return true;
+    } else {
+      return false;
     }
   }
 
   toString() {
-    return `${this.site}.${this.application}.${this.entity}`;
+    return [this.site, this.application, this.entity].join('.');
   }
 }
 

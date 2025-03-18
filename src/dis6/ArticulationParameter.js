@@ -18,7 +18,7 @@ class ArticulationParameter {
     this.changeIndicator = 0;
     this.partAttachedTo = 0;
     this.parameterType = 0;
-    this.parameterValue = 0;
+    this.parameterValue = new Uint8Array(8);
   }
 
   /**
@@ -30,7 +30,7 @@ class ArticulationParameter {
     this.changeIndicator = inputStream.readUByte();
     this.partAttachedTo = inputStream.readUShort();
     this.parameterType = inputStream.readInt();
-    this.parameterValue = inputStream.readFloat64();
+    this.parameterValue = inputStream.readBytes(8);
   }
 
   /**
@@ -42,7 +42,7 @@ class ArticulationParameter {
     outputStream.writeUByte(this.changeIndicator);
     outputStream.writeUShort(this.partAttachedTo);
     outputStream.writeInt(this.parameterType);
-    outputStream.writeFloat64(this.parameterValue);
+    //outputStream.writeFloat64(this.parameterValue);
   }
 }
 

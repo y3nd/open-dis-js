@@ -88,6 +88,7 @@ class EntityStatePdu {
     this.deadReckoningParameters = new DeadReckoningParameter();
     this.marking = new Marking();
     this.capabilities = 0;
+    /** @type {Array<ArticulationParameter>} */
     this.articulationParameters = [];
   }
 
@@ -117,7 +118,7 @@ class EntityStatePdu {
     this.capabilities = inputStream.readInt();
     for (let idx = 0; idx < this.numberOfArticulationParameters; idx++) {
       /** @type {ArticulationParameter} */
-      const anX = new this.dependencies.ArticulationParameter();
+      const anX = new ArticulationParameter();
       anX.initFromBinary(inputStream);
       this.articulationParameters.push(anX);
     }

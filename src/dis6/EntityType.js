@@ -19,7 +19,7 @@ class EntityType {
    * Kind of entity.
    * @type {EntityKind}
    */
-  entityKind = EntityType.EntityKind.OTHER;
+  kind = EntityType.EntityKind.OTHER;
 
   /**
    * Domain of entity (air, surface, subsurface, space, etc.).
@@ -62,7 +62,7 @@ class EntityType {
    * @param {InputStream} inputStream - The input stream to read data from.
    */
   initFromBinary(inputStream) {
-    this.entityKind = inputStream.readUByte();
+    this.kind = inputStream.readUByte();
     this.domain = inputStream.readUByte();
     this.country = inputStream.readUShort();
     this.category = inputStream.readUByte();
@@ -76,7 +76,7 @@ class EntityType {
    * @param {OutputStream} outputStream - The output stream to write data to.
    */
   encodeToBinary(outputStream) {
-    outputStream.writeUByte(this.entityKind);
+    outputStream.writeUByte(this.kind);
     outputStream.writeUByte(this.domain);
     outputStream.writeUShort(this.country);
     outputStream.writeUByte(this.category);
@@ -90,7 +90,7 @@ class EntityType {
    * @returns {string}
    */
   toString() {
-    return `${this.entityKind}.${this.domain}.${this.country}.${this.category}.${this.subcategory}.${this.spec}.${this.extra}`;
+    return `${this.kind}.${this.domain}.${this.country}.${this.category}.${this.subcategory}.${this.spec}.${this.extra}`;
   }
 
   /**

@@ -55,16 +55,6 @@ class LandPlatformAppearance {
     OTHER: 3,
   };
 
-  /**
-   * @readonly
-   * @enum {State}
-   * @brief Describes whether the entity is active or deactivated.
-   */
-  static STATE = {
-    ACTIVE: 0,
-    DEACTIVATED: 1,
-  };
-
   /** @type {PaintScheme} */
   paintScheme = LandPlatform*Appearance.PAINT_SCHEME.DEFAULT;
 

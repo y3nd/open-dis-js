@@ -47,7 +47,10 @@ class Marking {
    * @returns {string} String representation of the marking characters
    */
   getMarking() {
-    return this.characters.map((char) => String.fromCharCode(char)).join('');
+    let chrs = this.characters.map((char) => String.fromCharCode(char)).join('');
+    // remove any null characters from the end of the string
+    chrs = chrs.replace(/\0+$/, '');
+    return chrs;
   }
 
   /**

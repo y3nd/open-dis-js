@@ -105,6 +105,9 @@ class EntityType {
     ENVIRONMENTAL: 4,
     CULTURAL_FEATURE: 5,
     SUPPLY: 6,
+    RADIO: 7,
+    EXPENDABLE: 8,
+    SENSOR_EMITTER: 9,
   };
 
   /**
